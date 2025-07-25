@@ -29,4 +29,4 @@ vim.keymap.set("n", "<leader>h", ":split<CR>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
-vim.keymap.set("n", "<leader>o", ':silent !xdg-open "<cWORD>" &<CR>')
+vim.keymap.set("n", "<leader>o", ':silent !$BROWSER2 "<cWORD>" &<CR>')
