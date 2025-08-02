@@ -3,7 +3,7 @@
 ### how to use
 
 ```sh
-git clone https://github.com/eoSalinas/nvim
+git clone https://github.com/eoSalinas/nvim ~/.config/nvim
 ```
 
 #### dependencies
