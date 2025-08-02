@@ -106,6 +106,7 @@ return {
 				yamlls = {},
 				cssls = {},
 				html = {},
+				emmet_language_server = {},
 				ts_ls = {},
 			}
 
