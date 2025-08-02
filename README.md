@@ -1,6 +1,4 @@
-## nvim
-
-My personal Neovim config.
+## My personal Neovim config
 
 ### how to use
 
@@ -9,6 +7,7 @@ git clone https://github.com/eoSalinas/nvim
 ```
 
 #### dependencies
-- `node.js` (for some LSP and plugin stuff)
+- `neovim`
+- `node.js`
 - `fzf`
 - `ripgrep`
