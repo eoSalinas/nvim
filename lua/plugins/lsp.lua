@@ -25,7 +25,7 @@ return {
 
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+                    vim.keymap.set("n", "<leader>ca", require("fzf-lua").lsp_code_actions, {})
 
                     vim.keymap.set("n", "<leader>D", function() require("fzf-lua").lsp_typedefs() end)
 
