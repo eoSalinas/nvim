@@ -34,6 +34,14 @@ return {
             require("fzf-lua").diagnostics_document()
         end, { desc = "[F]ind [D]iagnostics" })
 
+        vim.keymap.set("n", "<leader>gb", function()
+            require("fzf-lua").git_branches()
+        end, { desc = "Git branches" })
+
+        vim.keymap.set("n", "<leader>gc", function()
+            require("fzf-lua").git_commits()
+        end, { desc = "Git commits" })
+
         vim.keymap.set("n", "<leader>fc", function()
             require("fzf-lua").files({
                 cwd = vim.fn.stdpath("config"),
