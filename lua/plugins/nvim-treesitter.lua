@@ -3,7 +3,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
         lazy = false,
         build = ":TSUpdate",
-        config = function ()
+        config = function()
             local config = require("nvim-treesitter")
             config.install {
                 "lua",
@@ -13,7 +13,7 @@ return {
                 "vimdoc",
                 "javascript",
                 "typescript",
-                "html", 
+                "html",
                 "css",
                 "json",
                 "toml",
