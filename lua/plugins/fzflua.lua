@@ -16,6 +16,8 @@ return {
             },
         }
 
+        config.register_ui_select()
+
         vim.keymap.set("n", "<C-n>", function()
             require("fzf-lua").files()
         end, { desc = "Find Files in project directory" })
