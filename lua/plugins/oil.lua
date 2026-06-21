@@ -7,7 +7,7 @@ return {
         local config = require("oil")
 
         config.setup {
-            default_file_explorer = true,
+            default_file_explorer = false,
             keymaps = {
                 ["<BS>"] = { "actions.parent", mode = "n" },
                 ["<Esc>"] = { "actions.close", mode = "n" },
