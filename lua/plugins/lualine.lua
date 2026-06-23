@@ -28,7 +28,7 @@ return {
                     lualine_a = { "mode" },
                     lualine_b = { "diagnostics" },
                     lualine_c = { { "filename", path = 1 } },
-                    lualine_x = { "encoding" },
+                    lualine_x = { "encoding", "progress" },
                     lualine_y = { { "branch", icon = "" } },
                     lualine_z = {},
                 },
