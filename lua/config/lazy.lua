@@ -33,7 +33,7 @@ require("lazy").setup({
     -- colorscheme that will be used when installing plugins.
     install = { colorscheme = { "rose-pine" } },
     -- automatically check for plugin updates
-    checker = { enabled = true, notify = false },
+    checker = { enabled = true, notify = vim.env.NVIM_ENV == "dev" },
 })
 
 require("config.remap")
