@@ -32,6 +32,7 @@ vim.keymap.set("n", "<leader>h", ":split<CR>")
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
 vim.api.nvim_create_user_command("Update", function()
+    vim.notify("Updating...")
     vim.fn.jobstart({ "git", "pull" }, {
         cwd = vim.fn.stdpath("config"),
         on_exit = function(_, code)
