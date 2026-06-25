@@ -31,6 +31,20 @@ vim.keymap.set("n", "<leader>h", ":split<CR>")
 
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
+vim.api.nvim_create_user_command("Update", function()
+    vim.fn.jobstart({ "git", "pull" }, {
+        cwd = vim.fn.stdpath("config"),
+        on_exit = function(_, code)
+            if code ~= 0 then
+                vim.notify("git pull failed", vim.log.levels.ERROR)
+                return
+            end
+            vim.cmd("Lazy restore")
+            vim.notify("Neovim updated, restart to apply changes.")
+        end,
+    })
+end, { desc = "Pull config and restore plugins" })
+
 vim.keymap.set("n", "<leader>o", function()
     local word = vim.fn.expand("<cWORD>")
     vim.fn.jobstart({ "xdg-open", word }, { detach = true })
