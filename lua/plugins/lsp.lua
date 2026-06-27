@@ -101,6 +101,7 @@ return {
             capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
             local servers = {
+                -- systems
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -113,13 +114,16 @@ return {
                 bashls = {},
                 clangd = {},
                 rust_analyzer = {},
-                jsonls = {},
-                yamlls = {},
-                cssls = {},
+                -- web
+                ts_ls = {},
                 html = {},
+                cssls = {},
                 tailwindcss = {},
                 emmet_language_server = {},
-                ts_ls = {},
+                -- data
+                jsonls = {},
+                yamlls = {},
+                -- tools
                 oxfmt = {},
                 oxlint = {},
             }
