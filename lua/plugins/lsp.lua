@@ -19,17 +19,27 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
                 callback = function(event)
-                    vim.keymap.set("n", "gd", function() require("fzf-lua").lsp_definitions() end)
-                    vim.keymap.set("n", "gr", function() require("fzf-lua").lsp_references() end)
-                    vim.keymap.set("n", "gI", function() require("fzf-lua").lsp_implementations() end)
+                    vim.keymap.set("n", "gd", function()
+                        require("fzf-lua").lsp_definitions()
+                    end)
+                    vim.keymap.set("n", "gr", function()
+                        require("fzf-lua").lsp_references()
+                    end)
+                    vim.keymap.set("n", "gI", function()
+                        require("fzf-lua").lsp_implementations()
+                    end)
 
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
                     vim.keymap.set("n", "<leader>ca", require("fzf-lua").lsp_code_actions, {})
 
-                    vim.keymap.set("n", "<leader>D", function() require("fzf-lua").lsp_typedefs() end)
+                    vim.keymap.set("n", "<leader>D", function()
+                        require("fzf-lua").lsp_typedefs()
+                    end)
 
-                    vim.keymap.set("n", "<leader>ds", function() require("fzf-lua").lsp_document_symbols() end)
+                    vim.keymap.set("n", "<leader>ds", function()
+                        require("fzf-lua").lsp_document_symbols()
+                    end)
 
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
                     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
