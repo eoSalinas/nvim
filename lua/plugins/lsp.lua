@@ -110,6 +110,7 @@ return {
                 tailwindcss = {},
                 emmet_language_server = {},
                 ts_ls = {},
+                oxfmt = {},
             }
 
             local ensure_installed = vim.tbl_keys(servers or {})
@@ -177,6 +178,11 @@ return {
                 end,
                 formatters_by_ft = {
                     lua = { "stylua" },
+                    javascript = { "oxfmt" },
+                    javascriptreact = { "oxfmt" },
+                    typescript = { "oxfmt" },
+                    typescriptreact = { "oxfmt" },
+                    json = { "oxfmt" },
                 },
             })
         end,
