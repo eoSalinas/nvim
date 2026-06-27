@@ -6,20 +6,25 @@ return {
         config = function()
             local config = require("nvim-treesitter")
             config.install({
+                -- systems
                 "lua",
                 "c",
                 "rust",
+                -- vim
                 "vim",
                 "vimdoc",
+                -- web
                 "javascript",
                 "jsx",
                 "typescript",
                 "tsx",
                 "html",
                 "css",
+                -- data
                 "json",
                 "toml",
                 "yaml",
+                -- ops
                 "bash",
                 "dockerfile",
                 "gitcommit",
