@@ -1,26 +1,29 @@
 return {
     {
-        'nvim-treesitter/nvim-treesitter',
+        "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = ":TSUpdate",
         config = function()
             local config = require("nvim-treesitter")
-            config.install {
+            config.install({
                 "lua",
                 "c",
                 "rust",
                 "vim",
                 "vimdoc",
                 "javascript",
+                "jsx",
                 "typescript",
+                "tsx",
                 "html",
                 "css",
                 "json",
                 "toml",
                 "yaml",
                 "bash",
-                "dockerfile"
-            }
+                "dockerfile",
+                "gitcommit",
+            })
 
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             vim.api.nvim_create_autocmd("FileType", {
@@ -28,7 +31,7 @@ return {
                     pcall(vim.treesitter.start, args.buf)
                 end,
             })
-        end
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
