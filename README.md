@@ -47,6 +47,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides |
 | [mini.pairs](https://github.com/echasnovski/mini.pairs) | Auto pairs |
 | [vim-sleuth](https://github.com/tpope/vim-sleuth) | Auto indent detection |
+| [blink.cmp](https://github.com/Saghen/blink.cmp) | Completion engine |
 
 ## Keymaps
 
@@ -57,6 +58,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | Key | Action |
 |-----|--------|
 | `<leader>w` | Save file |
+| `<leader>q` | Quit |
 | `<leader>v` | Vertical split |
 | `<leader>h` | Horizontal split |
 | `<leader>s` | Search & replace word under cursor |
@@ -110,6 +112,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<leader>f` | Format |
 | `<leader>tf` | Toggle format on save |
 | `<leader>th` | Toggle inlay hints |
+| `<C-k>` *(in completion)* | Toggle documentation popup |
 
 ### Git
 
@@ -126,10 +129,16 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 
 | Key | Action |
 |-----|--------|
-| `-` | Open parent directory (float) |
+| `<C-b>` | Open parent directory (float) |
 | `<BS>` | Go to parent directory |
 | `.` | Toggle hidden files |
 | `<Esc>` | Close oil |
+
+### Commands
+
+| Command | Action |
+|---------|--------|
+| `:Update` | Pull config from git and restore plugins |
 
 ### Harpoon
 
