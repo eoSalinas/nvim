@@ -30,6 +30,10 @@ return {
             require("fzf-lua").grep_cword()
         end, { desc = "[F]ind current [W]ord" })
 
+        vim.keymap.set("v", "<C-f>", function()
+            require("fzf-lua").grep_visual()
+        end, { desc = "Grep selected text in project" })
+
         vim.keymap.set("n", "<leader>fd", function()
             require("fzf-lua").diagnostics_document()
         end, { desc = "[F]ind [D]iagnostics" })
