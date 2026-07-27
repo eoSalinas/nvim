@@ -64,6 +64,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<leader>s` | Search & replace word under cursor |
 | `<leader>x` | Make file executable |
 | `<leader>o` | Open URL under cursor |
+| `<leader>cp` | Copy current file path to clipboard |
 | `<leader>u` | Toggle undotree |
 | `<A-s>` | Open tmux sessionizer |
 | `<A-e>` | Open yazi |
@@ -91,6 +92,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<C-n>` | Find files |
 | `<leader>ps` | Live grep |
 | `<leader>fw` | Find word under cursor |
+| `<C-f>` (visual) | Grep selected text in project |
 | `<leader>fd` | Find diagnostics |
 | `<leader>fc` | Find in nvim config |
 | `<leader>gb` | Git branches |
