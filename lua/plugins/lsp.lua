@@ -29,6 +29,7 @@ return {
                         require("fzf-lua").lsp_implementations()
                     end)
 
+                    vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, {})
                     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
                     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
                     vim.keymap.set("n", "<leader>ca", require("fzf-lua").lsp_code_actions, {})
