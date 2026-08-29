@@ -11,6 +11,7 @@ return {
             keymaps = {
                 ["<BS>"] = { "actions.parent", mode = "n" },
                 ["<Esc>"] = { "actions.close", mode = "n" },
+                ["q"] = { "actions.close", mode = "n" },
                 ["."] = { "actions.toggle_hidden", mode = "n" },
             },
             float = {
