@@ -114,6 +114,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<leader>f` | Format |
 | `<leader>tf` | Toggle format on save |
 | `<leader>th` | Toggle inlay hints |
+| `<C-k>` | Hover |
 | `<C-k>` *(in completion)* | Toggle documentation popup |
 
 ### Git
@@ -134,7 +135,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<C-b>` | Open parent directory (float) |
 | `<BS>` | Go to parent directory |
 | `.` | Toggle hidden files |
-| `<Esc>` | Close oil |
+| `<Esc>` / `q` | Close oil |
 
 ### Commands
 
@@ -148,4 +149,4 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 |-----|--------|
 | `<leader>a` | Add file to list |
 | `<C-e>` | Toggle harpoon menu |
-| `<A-1>` – `<A-4>` | Jump to file 1–4 |
+| `<A-h>` / `<A-j>` / `<A-k>` / `<A-l>` | Jump to file 1–4 |
