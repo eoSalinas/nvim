@@ -30,10 +30,13 @@ return {
                 "gitcommit",
             })
 
-            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             vim.api.nvim_create_autocmd("FileType", {
+                desc = "Start treesitter highlighting and indent",
+                group = vim.api.nvim_create_augroup("treesitter-start", { clear = true }),
                 callback = function(args)
-                    pcall(vim.treesitter.start, args.buf)
+                    if pcall(vim.treesitter.start, args.buf) then
+                        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                    end
                 end,
             })
         end,
