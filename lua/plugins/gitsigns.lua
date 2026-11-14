@@ -12,13 +12,6 @@ return {
                     changedelete = { text = "~" },
                 },
             })
-
-            vim.keymap.set("n", "]h", "<cmd>Gitsigns nav_hunk next<CR>", {})
-            vim.keymap.set("n", "[h", "<cmd>Gitsigns nav_hunk prev<CR>", {})
-            vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
-            vim.keymap.set("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", {})
-            vim.keymap.set("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", {})
-            vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", {})
         end,
     },
 }

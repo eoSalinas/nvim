@@ -19,7 +19,5 @@ return {
                 max_height = 25,
             },
         })
-
-        vim.keymap.set("n", "<C-b>", "<cmd>Oil --float<CR>", { desc = "Open Parent Directory in Oil" })
     end,
 }
