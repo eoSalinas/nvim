@@ -11,19 +11,18 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "j-hui/fidget.nvim",
+            { "j-hui/fidget.nvim", opts = {} },
 
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-            { "saghen/blink.cmp", version = "*", dependencies = { "rafamadriz/friendly-snippets" } },
-            "stevearc/conform.nvim",
+            -- registers its LSP capabilities via vim.lsp.config("*"),
+            -- so it must load before servers are enabled
+            "saghen/blink.cmp",
         },
         config = function()
             require("mason").setup({})
-            local fidget = require("fidget")
-            fidget.setup({})
 
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -148,80 +147,6 @@ return {
 
             -- mason-lspconfig v2: installed servers are enabled via vim.lsp.enable()
             require("mason-lspconfig").setup({})
-
-            require("blink.cmp").setup({
-                keymap = {
-                    preset = "default",
-                    ["<C-k>"] = {
-                        function(cmp)
-                            if cmp.is_documentation_visible() then
-                                return cmp.hide_documentation()
-                            else
-                                return cmp.show_documentation()
-                            end
-                        end,
-                        "fallback",
-                    },
-                },
-                appearance = {
-                    use_nvim_cmp_as_default = true,
-                    nerd_font_variant = "mono",
-                },
-                sources = {
-                    default = { "lsp", "path", "snippets", "buffer" },
-                },
-                completion = {
-                    documentation = {
-                        auto_show = false,
-                    },
-                },
-            })
-
-            local conform = require("conform")
-
-            vim.keymap.set("n", "<leader>tf", function()
-                if vim.g.disable_format_on_save then
-                    vim.g.disable_format_on_save = false
-                    fidget.notify("Format on save enabled", vim.log.levels.INFO)
-                else
-                    vim.g.disable_format_on_save = true
-                    fidget.notify("Format on save disabled", vim.log.levels.INFO)
-                end
-            end, {})
-
-            vim.keymap.set("n", "<leader>cf", function()
-                conform.format({ lsp_format = "fallback" })
-            end, { desc = "Format buffer" })
-
-            conform.setup({
-                notify_on_error = false,
-                format_on_save = function(bufnr)
-                    if vim.g.disable_format_on_save then
-                        return
-                    else
-                        local disable_filetypes = { c = true, cpp = true }
-                        local lsp_format_opt
-                        if disable_filetypes[vim.bo[bufnr].filetype] then
-                            lsp_format_opt = "never"
-                        else
-                            lsp_format_opt = "fallback"
-                        end
-
-                        return {
-                            timeout_ms = 2500,
-                            lsp_format = lsp_format_opt,
-                        }
-                    end
-                end,
-                formatters_by_ft = {
-                    lua = { "stylua" },
-                    javascript = { "oxfmt" },
-                    javascriptreact = { "oxfmt" },
-                    typescript = { "oxfmt" },
-                    typescriptreact = { "oxfmt" },
-                    json = { "oxfmt" },
-                },
-            })
         end,
     },
 }

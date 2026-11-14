@@ -1,6 +1,6 @@
 ## Requirements
 
-- Neovim >= 0.10
+- Neovim >= 0.11
 - [fzf](https://github.com/junegunn/fzf) (for fzf-lua)
 - [ripgrep](https://github.com/BurntSushi/ripgrep) (for live grep)
 - A [Nerd Font](https://www.nerdfonts.com/) (for icons)
@@ -48,6 +48,8 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | [mini.pairs](https://github.com/echasnovski/mini.pairs) | Auto pairs |
 | [vim-sleuth](https://github.com/tpope/vim-sleuth) | Auto indent detection |
 | [blink.cmp](https://github.com/Saghen/blink.cmp) | Completion engine |
+| [conform.nvim](https://github.com/stevearc/conform.nvim) | Formatting (format on save) |
+| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Lua LSP setup for Neovim config |
 
 ## Keymaps
 
