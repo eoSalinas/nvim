@@ -1,7 +1,6 @@
 > Minimal Neovim config. ~15ms startup, lazy-loaded, one file per plugin.
 
-<!-- TODO: screenshot -->
-<!-- ![screenshot](.github/assets/screenshot.png) -->
+![screenshot](.github/assets/screenshot.png)
 
 ### Requirements
 
