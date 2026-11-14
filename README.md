@@ -1,167 +1,57 @@
+# nvim
+
+Minimal Neovim config. ~15ms startup, lazy-loaded, one file per plugin.
+
+<!-- TODO: screenshot -->
+<!-- ![screenshot](.github/assets/screenshot.png) -->
+
 ## Requirements
 
 - Neovim >= 0.11
-- [fzf](https://github.com/junegunn/fzf) (for fzf-lua)
-- [ripgrep](https://github.com/BurntSushi/ripgrep) (for live grep)
-- A [Nerd Font](https://www.nerdfonts.com/) (for icons)
-- `git`, `tmux` (optional, for sessionizer)
-- `yazi` (optional, for file manager integration)
-- [lazygit](https://github.com/jesseduffield/lazygit) (optional, for lazygit integration)
+- `git`, [ripgrep](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf)
+- A [Nerd Font](https://www.nerdfonts.com/)
+- Optional: `tmux` (sessionizer), [yazi](https://github.com/sxyazi/yazi), [lazygit](https://github.com/jesseduffield/lazygit)
 
-## Installation
+## Install
 
 ```bash
-git clone https://github.com/matheussalinas/nvim ~/.config/nvim
+mv ~/.config/nvim ~/.config/nvim.bak  # backup existing config
+git clone https://github.com/eoSalinas/nvim ~/.config/nvim
+nvim  # plugins and LSP servers install on first launch
 ```
+
+Update with `:Update` (pulls the repo and restores the plugin versions in `lazy-lock.json`).
 
 ## Structure
 
 ```
-~/.config/nvim/
-├── init.lua              # Entry point
-└── lua/
-    ├── config/
-    │   ├── lazy.lua      # Plugin manager setup
-    │   ├── keymaps.lua   # All keymaps (incl. plugins and LSP)
-    │   ├── commands.lua  # User commands
-    │   └── set.lua       # Vim options
-    └── plugins/          # One file per plugin
+lua/config/   options, keymaps, user commands, plugin manager
+lua/plugins/  one file per plugin
 ```
 
 ## Plugins
 
-| Plugin | Purpose |
-|--------|---------|
-| [fzf-lua](https://github.com/ibhagwan/fzf-lua) | Fuzzy finder (files, grep, git, LSP) |
-| [oil.nvim](https://github.com/stevearc/oil.nvim) | File system navigation |
-| [harpoon](https://github.com/ThePrimeagen/harpoon) | File bookmarks |
-| [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) | LazyGit integration |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git hunk signs and actions |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP configuration |
-| [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting |
-| [undotree](https://github.com/mbbill/undotree) | Undo history visualizer |
-| [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim) | Find and replace |
-| [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim) | Status line |
-| [rose-pine](https://github.com/rose-pine/neovim) | Colorscheme |
-| [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) | Markdown rendering |
-| [todo-comments.nvim](https://github.com/folke/todo-comments.nvim) | Highlight TODOs |
-| [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) | Indent guides |
-| [mini.pairs](https://github.com/echasnovski/mini.pairs) | Auto pairs |
-| [vim-sleuth](https://github.com/tpope/vim-sleuth) | Auto indent detection |
-| [blink.cmp](https://github.com/Saghen/blink.cmp) | Completion engine |
-| [conform.nvim](https://github.com/stevearc/conform.nvim) | Formatting (format on save) |
-| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Lua LSP setup for Neovim config |
+| | |
+|---|---|
+| **Find** | [fzf-lua](https://github.com/ibhagwan/fzf-lua), [harpoon](https://github.com/ThePrimeagen/harpoon/tree/harpoon2), [oil.nvim](https://github.com/stevearc/oil.nvim) |
+| **LSP** | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), [mason.nvim](https://github.com/mason-org/mason.nvim), [blink.cmp](https://github.com/Saghen/blink.cmp), [conform.nvim](https://github.com/stevearc/conform.nvim), [lazydev.nvim](https://github.com/folke/lazydev.nvim) |
+| **Git** | [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim), [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim) |
+| **Editing** | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (+ [context](https://github.com/nvim-treesitter/nvim-treesitter-context)), [mini.pairs](https://github.com/echasnovski/mini.pairs), [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim), [undotree](https://github.com/mbbill/undotree), [vim-sleuth](https://github.com/tpope/vim-sleuth) |
+| **UI** | [rose-pine](https://github.com/rose-pine/neovim), [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim), [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim), [todo-comments.nvim](https://github.com/folke/todo-comments.nvim), [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) |
 
 ## Keymaps
 
-`<leader>` is `Space`. All keymaps are defined in [`lua/config/keymaps.lua`](lua/config/keymaps.lua); search them inside nvim with `<leader>fk`.
-
-### General
-
-| Key | Action |
-|-----|--------|
-| `<leader>w` | Save file |
-| `<leader>q` | Quit |
-| `<leader>v` | Vertical split |
-| `<leader>h` | Horizontal split |
-| `<leader>s` | Search & replace word under cursor |
-| `<leader>x` | Make file executable |
-| `<leader>o` | Open URL under cursor |
-| `<leader>cp` | Copy current file path to clipboard |
-| `<leader>u` | Toggle undotree |
-| `<leader>pv` | Open netrw |
-| `<C-c>` *(insert)* | Exit insert mode |
-| `<A-s>` | Open tmux sessionizer |
-| `<A-e>` | Open yazi |
-
-### Navigation
+`<leader>` is `Space`. Essentials below; the full list lives in
+[`lua/config/keymaps.lua`](lua/config/keymaps.lua), or search it inside nvim with `<leader>fk`.
 
 | Key | Action |
-|-----|--------|
-| `<C-d>` / `<C-u>` | Scroll half-page down/up (centered) |
-| `n` / `N` | Next/prev search result (centered) |
-| `J` / `K` (visual) | Move selected lines down/up |
-| `J` | Join lines (keep cursor position) |
-
-### Clipboard
-
-| Key | Action |
-|-----|--------|
-| `<leader>y` / `<leader>Y` | Yank to system clipboard |
-| `<leader>p` (visual) | Paste without overwriting register |
-| `<leader>d` | Delete to void register |
-
-### fzf-lua
-
-| Key | Action |
-|-----|--------|
+|---|---|
 | `<C-n>` | Find files |
 | `<leader>ps` | Live grep |
-| `<leader>fw` | Find word under cursor |
-| `<C-f>` (visual) | Grep selected text in project |
-| `<leader>fd` | Find diagnostics |
-| `<leader>fc` | Find in nvim config |
-| `<leader>fk` | Find keymaps |
-| `<leader>pt` | Find TODOs |
-| `<leader>gb` | Git branches |
-| `<leader>gc` | Git commits |
-| `<C-t>` *(inside fzf)* | Toggle preview |
-
-### LSP
-
-| Key | Action |
-|-----|--------|
-| `gd` | Go to definition |
-| `grr` | Go to references |
-| `gri` | Go to implementation |
-| `gD` | Go to declaration |
-| `<leader>D` | Type definition |
-| `<leader>fs` | Document symbols |
-| `<leader>rn` | Rename |
+| `<C-b>` | File explorer (oil) |
+| `<leader>a` / `<C-e>` | Harpoon add / menu |
+| `gd` / `grr` | Go to definition / references |
 | `<leader>ca` | Code actions |
-| `<leader>cf` | Format |
-| `<leader>tf` | Toggle format on save |
-| `<leader>th` | Toggle inlay hints |
-| `<C-k>` | Hover |
-| `<C-k>` *(in completion)* | Toggle documentation popup |
-
-### Git
-
-| Key | Action |
-|-----|--------|
-| `<leader>gl` | Open LazyGit |
-| `]h` / `[h` | Next/prev hunk |
-| `<leader>gs` | Stage hunk |
-| `<leader>gr` | Reset hunk |
-| `<leader>gp` | Preview hunk |
-| `<leader>gt` | Toggle line blame |
-
-### Toggles
-
-| Key | Action |
-|-----|--------|
-| `<leader>ti` | Toggle indent guides |
-| `<leader>tl` | TODOs in location list |
-
-### Oil
-
-| Key | Action |
-|-----|--------|
-| `<C-b>` | Open parent directory (float) |
-| `<BS>` | Go to parent directory |
-| `.` | Toggle hidden files |
-| `<Esc>` / `q` | Close oil |
-
-### Commands
-
-| Command | Action |
-|---------|--------|
-| `:Update` | Pull config from git and restore plugins |
-
-### Harpoon
-
-| Key | Action |
-|-----|--------|
-| `<leader>a` | Add file to list |
-| `<C-e>` | Toggle harpoon menu |
-| `<A-h>` / `<A-j>` / `<A-k>` / `<A-l>` | Jump to file 1–4 |
+| `<leader>cf` | Format buffer |
+| `<leader>gl` | LazyGit |
+| `<leader>u` | Undotree |
