@@ -3,18 +3,18 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local config = require("fzf-lua")
-        config.setup {
+        config.setup({
             winopts = {
                 preview = {
                     hidden = true,
-                }
+                },
             },
             keymap = {
                 builtin = {
                     ["<C-t>"] = "toggle-preview",
                 },
             },
-        }
+        })
 
         config.register_ui_select()
 
