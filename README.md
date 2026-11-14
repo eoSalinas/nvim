@@ -22,7 +22,8 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 └── lua/
     ├── config/
     │   ├── lazy.lua      # Plugin manager setup
-    │   ├── remap.lua     # Global keymaps
+    │   ├── keymaps.lua   # All keymaps (incl. plugins and LSP)
+    │   ├── commands.lua  # User commands
     │   └── set.lua       # Vim options
     └── plugins/          # One file per plugin
 ```
@@ -53,7 +54,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 
 ## Keymaps
 
-`<leader>` is `Space`.
+`<leader>` is `Space`. All keymaps are defined in [`lua/config/keymaps.lua`](lua/config/keymaps.lua); search them inside nvim with `<leader>fk`.
 
 ### General
 
@@ -68,6 +69,8 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<leader>o` | Open URL under cursor |
 | `<leader>cp` | Copy current file path to clipboard |
 | `<leader>u` | Toggle undotree |
+| `<leader>pv` | Open netrw |
+| `<C-c>` *(insert)* | Exit insert mode |
 | `<A-s>` | Open tmux sessionizer |
 | `<A-e>` | Open yazi |
 
@@ -78,6 +81,7 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<C-d>` / `<C-u>` | Scroll half-page down/up (centered) |
 | `n` / `N` | Next/prev search result (centered) |
 | `J` / `K` (visual) | Move selected lines down/up |
+| `J` | Join lines (keep cursor position) |
 
 ### Clipboard
 
@@ -97,6 +101,8 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<C-f>` (visual) | Grep selected text in project |
 | `<leader>fd` | Find diagnostics |
 | `<leader>fc` | Find in nvim config |
+| `<leader>fk` | Find keymaps |
+| `<leader>pt` | Find TODOs |
 | `<leader>gb` | Git branches |
 | `<leader>gc` | Git commits |
 | `<C-t>` *(inside fzf)* | Toggle preview |
@@ -129,6 +135,13 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | `<leader>gr` | Reset hunk |
 | `<leader>gp` | Preview hunk |
 | `<leader>gt` | Toggle line blame |
+
+### Toggles
+
+| Key | Action |
+|-----|--------|
+| `<leader>ti` | Toggle indent guides |
+| `<leader>tl` | TODOs in location list |
 
 ### Oil
 

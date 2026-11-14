@@ -2,11 +2,8 @@ return {
     {
         "folke/todo-comments.nvim",
         event = { "BufReadPost", "BufNewFile" },
+        cmd = { "TodoFzfLua", "TodoLocList" },
         dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            require("todo-comments").setup()
-            vim.keymap.set("n", "<leader>pt", ":TodoFzfLua<CR>", {})
-            vim.keymap.set("n", "<leader>tl", ":TodoLocList<CR>", {})
-        end,
+        opts = {},
     },
 }
