@@ -104,14 +104,14 @@ git clone https://github.com/matheussalinas/nvim ~/.config/nvim
 | Key | Action |
 |-----|--------|
 | `gd` | Go to definition |
-| `gr` | Go to references |
-| `gI` | Go to implementation |
+| `grr` | Go to references |
+| `gri` | Go to implementation |
 | `gD` | Go to declaration |
 | `<leader>D` | Type definition |
-| `<leader>ds` | Document symbols |
+| `<leader>fs` | Document symbols |
 | `<leader>rn` | Rename |
 | `<leader>ca` | Code actions |
-| `<leader>f` | Format |
+| `<leader>cf` | Format |
 | `<leader>tf` | Toggle format on save |
 | `<leader>th` | Toggle inlay hints |
 | `<C-k>` | Hover |
