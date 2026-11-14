@@ -28,35 +28,9 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
                 callback = function(event)
-                    local map = function(lhs, rhs, desc)
-                        vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc })
-                    end
-
-                    map("gd", function()
-                        require("fzf-lua").lsp_definitions()
-                    end)
-                    -- Override nvim's default grr/gri with fzf-lua pickers
-                    map("grr", function()
-                        require("fzf-lua").lsp_references()
-                    end)
-                    map("gri", function()
-                        require("fzf-lua").lsp_implementations()
-                    end)
-
-                    map("<C-k>", vim.lsp.buf.hover)
-                    map("gD", vim.lsp.buf.declaration)
-                    map("<leader>rn", vim.lsp.buf.rename)
-                    map("<leader>ca", require("fzf-lua").lsp_code_actions)
-
-                    map("<leader>D", function()
-                        require("fzf-lua").lsp_typedefs()
-                    end)
-
-                    map("<leader>fs", function()
-                        require("fzf-lua").lsp_document_symbols()
-                    end)
-
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
+                    require("config.keymaps").lsp(event.buf, client)
+
                     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                         local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
                         vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
@@ -78,12 +52,6 @@ return {
                                 vim.api.nvim_clear_autocmds({ group = "lsp-highlight", buffer = event2.buf })
                             end,
                         })
-                    end
-
-                    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-                        map("<leader>th", function()
-                            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-                        end, "Toggle inlay hints")
                     end
                 end,
             })

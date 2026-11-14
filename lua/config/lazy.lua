@@ -31,4 +31,5 @@ require("lazy").setup({
     checker = { enabled = true, notify = vim.env.NVIM_ENV == "dev" },
 })
 
-require("config.remap")
+require("config.keymaps")
+require("config.commands")

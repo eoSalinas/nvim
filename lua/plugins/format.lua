@@ -4,24 +4,6 @@ return {
         dependencies = { "j-hui/fidget.nvim" },
         event = "BufWritePre",
         cmd = "ConformInfo",
-        keys = {
-            {
-                "<leader>tf",
-                function()
-                    vim.g.disable_format_on_save = not vim.g.disable_format_on_save
-                    local state = vim.g.disable_format_on_save and "disabled" or "enabled"
-                    require("fidget").notify("Format on save " .. state, vim.log.levels.INFO)
-                end,
-                desc = "Toggle format on save",
-            },
-            {
-                "<leader>cf",
-                function()
-                    require("conform").format({ lsp_format = "fallback" })
-                end,
-                desc = "Format buffer",
-            },
-        },
         config = function()
             local conform = require("conform")
 
