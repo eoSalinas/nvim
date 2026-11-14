@@ -1,18 +1,16 @@
-# nvim
-
-Minimal Neovim config. ~15ms startup, lazy-loaded, one file per plugin.
+> Minimal Neovim config. ~15ms startup, lazy-loaded, one file per plugin.
 
 <!-- TODO: screenshot -->
 <!-- ![screenshot](.github/assets/screenshot.png) -->
 
-## Requirements
+### Requirements
 
 - Neovim >= 0.11
 - `git`, [ripgrep](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf)
 - A [Nerd Font](https://www.nerdfonts.com/)
 - Optional: `tmux` (sessionizer), [yazi](https://github.com/sxyazi/yazi), [lazygit](https://github.com/jesseduffield/lazygit)
 
-## Install
+### Install
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak  # backup existing config
@@ -22,14 +20,14 @@ nvim  # plugins and LSP servers install on first launch
 
 Update with `:Update` (pulls the repo and restores the plugin versions in `lazy-lock.json`).
 
-## Structure
+### Structure
 
 ```
 lua/config/   options, keymaps, user commands, plugin manager
 lua/plugins/  one file per plugin
 ```
 
-## Plugins
+### Plugins
 
 | | |
 |---|---|
@@ -39,7 +37,7 @@ lua/plugins/  one file per plugin
 | **Editing** | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (+ [context](https://github.com/nvim-treesitter/nvim-treesitter-context)), [mini.pairs](https://github.com/echasnovski/mini.pairs), [grug-far.nvim](https://github.com/MagicDuck/grug-far.nvim), [undotree](https://github.com/mbbill/undotree), [vim-sleuth](https://github.com/tpope/vim-sleuth) |
 | **UI** | [rose-pine](https://github.com/rose-pine/neovim), [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim), [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim), [todo-comments.nvim](https://github.com/folke/todo-comments.nvim), [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) |
 
-## Keymaps
+### Keymaps
 
 `<leader>` is `Space`. Essentials below; the full list lives in
 [`lua/config/keymaps.lua`](lua/config/keymaps.lua), or search it inside nvim with `<leader>fk`.
