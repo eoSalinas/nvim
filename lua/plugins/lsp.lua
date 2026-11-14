@@ -35,10 +35,11 @@ return {
                     map("gd", function()
                         require("fzf-lua").lsp_definitions()
                     end)
-                    map("gr", function()
+                    -- Override nvim's default grr/gri with fzf-lua pickers
+                    map("grr", function()
                         require("fzf-lua").lsp_references()
                     end)
-                    map("gI", function()
+                    map("gri", function()
                         require("fzf-lua").lsp_implementations()
                     end)
 
@@ -51,7 +52,7 @@ return {
                         require("fzf-lua").lsp_typedefs()
                     end)
 
-                    map("<leader>ds", function()
+                    map("<leader>fs", function()
                         require("fzf-lua").lsp_document_symbols()
                     end)
 
@@ -188,9 +189,9 @@ return {
                 end
             end, {})
 
-            vim.keymap.set("n", "<leader>f", function()
-                conform.format()
-            end, {})
+            vim.keymap.set("n", "<leader>cf", function()
+                conform.format({ lsp_format = "fallback" })
+            end, { desc = "Format buffer" })
 
             conform.setup({
                 notify_on_error = false,
