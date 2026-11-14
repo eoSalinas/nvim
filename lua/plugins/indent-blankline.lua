@@ -1,6 +1,7 @@
 return {
     {
         "lukas-reineke/indent-blankline.nvim",
+        event = { "BufReadPost", "BufNewFile" },
         config = function()
             local function get_ibl_config(state)
                 return {
