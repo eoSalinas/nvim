@@ -7,7 +7,7 @@ return {
         },
         opts = {
             options = {
-                theme = "rose-pine",
+                theme = "iceberg_dark",
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
             },
