@@ -1,5 +1,14 @@
 return {
     {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+    {
         "neovim/nvim-lspconfig",
         dependencies = {
             "j-hui/fidget.nvim",
@@ -19,26 +28,30 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
                 callback = function(event)
-                    vim.keymap.set("n", "gd", function()
+                    local map = function(lhs, rhs, desc)
+                        vim.keymap.set("n", lhs, rhs, { buffer = event.buf, desc = desc })
+                    end
+
+                    map("gd", function()
                         require("fzf-lua").lsp_definitions()
                     end)
-                    vim.keymap.set("n", "gr", function()
+                    map("gr", function()
                         require("fzf-lua").lsp_references()
                     end)
-                    vim.keymap.set("n", "gI", function()
+                    map("gI", function()
                         require("fzf-lua").lsp_implementations()
                     end)
 
-                    vim.keymap.set("n", "<C-k>", vim.lsp.buf.hover, {})
-                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-                    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-                    vim.keymap.set("n", "<leader>ca", require("fzf-lua").lsp_code_actions, {})
+                    map("<C-k>", vim.lsp.buf.hover)
+                    map("gD", vim.lsp.buf.declaration)
+                    map("<leader>rn", vim.lsp.buf.rename)
+                    map("<leader>ca", require("fzf-lua").lsp_code_actions)
 
-                    vim.keymap.set("n", "<leader>D", function()
+                    map("<leader>D", function()
                         require("fzf-lua").lsp_typedefs()
                     end)
 
-                    vim.keymap.set("n", "<leader>ds", function()
+                    map("<leader>ds", function()
                         require("fzf-lua").lsp_document_symbols()
                     end)
 
@@ -67,51 +80,42 @@ return {
                     end
 
                     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-                        vim.keymap.set("n", "<leader>th", function()
+                        map("<leader>th", function()
                             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-                        end, {})
+                        end, "Toggle inlay hints")
                     end
                 end,
             })
 
+            local diagnostic_signs = {}
             if vim.g.have_nerd_font then
-                local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
-                local diagnostic_signs = {}
+                local signs = { ERROR = "", WARN = "", INFO = "", HINT = "" }
                 for type, icon in pairs(signs) do
                     diagnostic_signs[vim.diagnostic.severity[type]] = icon
                 end
-                vim.diagnostic.config({
-                    signs = { text = diagnostic_signs },
-                    virtual_text = {
-                        spacing = 4,
-                        source = "if_many",
-                        prefix = "",
-                    },
-                    float = {
-                        focusable = false,
-                        style = "minimal",
-                        border = "rounded",
-                        source = "always",
-                        header = "",
-                        prefix = "",
-                    },
-                })
             end
+            vim.diagnostic.config({
+                signs = { text = diagnostic_signs },
+                virtual_text = {
+                    spacing = 4,
+                    source = "if_many",
+                    prefix = "",
+                },
+                float = {
+                    focusable = false,
+                    style = "minimal",
+                    border = "rounded",
+                    source = true,
+                    header = "",
+                    prefix = "",
+                },
+            })
 
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
-
+            -- Per-server overrides. Capabilities from blink.cmp are injected
+            -- globally by the plugin itself (vim.lsp.config("*")).
             local servers = {
                 -- systems
-                lua_ls = {
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
-                            },
-                        },
-                    },
-                },
+                lua_ls = {},
                 bashls = {},
                 clangd = {},
                 rust_analyzer = {},
@@ -129,21 +133,20 @@ return {
                 oxlint = {},
             }
 
-            local ensure_installed = vim.tbl_keys(servers or {})
+            for name, config in pairs(servers) do
+                if next(config) ~= nil then
+                    vim.lsp.config(name, config)
+                end
+            end
+
+            local ensure_installed = vim.tbl_keys(servers)
             vim.list_extend(ensure_installed, {
                 "stylua",
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-            require("mason-lspconfig").setup({
-                handlers = {
-                    function(server_name)
-                        local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-                        require("lspconfig")[server_name].setup(server)
-                    end,
-                },
-            })
+            -- mason-lspconfig v2: installed servers are enabled via vim.lsp.enable()
+            require("mason-lspconfig").setup({})
 
             require("blink.cmp").setup({
                 keymap = {
